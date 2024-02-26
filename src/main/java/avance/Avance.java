@@ -67,7 +67,6 @@ public class Avance {
                 default:
                     JOptionPane.showMessageDialog(null, opcionMenu + " Este número no es una opcion válida.");
                     break;
-
             }
         }
      }

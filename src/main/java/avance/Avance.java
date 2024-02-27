@@ -12,14 +12,15 @@ public class Avance {
 
         //ciclo para mostrar menu
         
-        while (opcionMenu != 5) {
+        while (opcionMenu != 6) {
 
             //mostrar menu
-            String textoMenu = "1. Registros \n"
-                    + "2. Consultas \n"
-                    + "3. Modificacion \n"
-                    + "4. Reportes  \n"
-                    + "5. Salir";
+            String textoMenu = "1. Ingreso de trámite \n"
+                    + "2. Análisis de trámites en “Recepción” \n"
+                    + "3. Análisis de trámites en “Documentos” \n"
+                    + "4. Análisis de trámites en “Cajas”  \n"
+                    + "5. Reportes  \n"
+                    + "6. Salir";
 
                 opcionMenu = Integer.parseInt(JOptionPane.showInputDialog(textoMenu));
 
@@ -36,17 +37,19 @@ public class Avance {
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null, "Eligio la opcion 4");
+                    break;
+                case 5:
+                    JOptionPane.showMessageDialog(null, "Sub menú de Reportes");
                     int subMenu = 0;
+                    
          //ciclo para mostrar sub
-         /*1. Reporte ventas
-         2. Reporte gastos 
-         3. Salir */
+                    String textosubMenu = "1. Reporte de trámites desertados \n"
+                            + "2. Reporte de trámites por fila  \n"
+                            + "3. Reporte de trámites finalizados  \n"
+                            + "4. Reporte de pagos  \n"
+                            + "5. Menu principal  \n";
 
-                    String textosubMenu = "1. Reporte ventas \n"
-                            + "2. Reporte gastos  \n"
-                            + "3. Menu principal  \n";
-
-                    while (subMenu != 3) {
+                    while (subMenu != 5) {
                         //mostrar sub menu y solicitar opcion
                      
                         subMenu = Integer.parseInt(JOptionPane.showInputDialog(textosubMenu));
@@ -58,23 +61,26 @@ public class Avance {
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Sub - opcion 2");
                                 break;
+                            case 3:
+                                JOptionPane.showMessageDialog(null, "Sub - opcion 3");
+                                break;
+                            case 4:
+                                JOptionPane.showMessageDialog(null, "Sub - opcion 4");
+                                break;
                             default:
                                 break;
                         }
                     }
 
                     break;
-            case 5:
+            case 6:
                 break;
                 default:
                     JOptionPane.showMessageDialog(null, opcionMenu + " Este número no es una opcion válida.");
                     break;
-
             }
         }
      }
-    
-    
-    
+  
     
 }

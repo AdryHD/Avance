@@ -7,6 +7,8 @@ public class Avance {
 
     public static void main(String[] args) {
       int opcionMenu = 0;
+      String nombre = JOptionPane.showInputDialog("Ingrese su nombre:");
+      String cedula = JOptionPane.showInputDialog("Ingrese su número de cédula:");
 
         //ciclo para mostrar menu
         

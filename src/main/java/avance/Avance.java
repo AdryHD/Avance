@@ -6,15 +6,13 @@ import javax.swing.JOptionPane;
 public class Avance {
 
     public static void main(String[] args) { 
-     JOptionPane.showMessageDialog(null, "Bienvenido a la Agencia Aduanal");
-     String nombre = JOptionPane.showInputDialog("Ingrese su nombre:");
-     String cedula = JOptionPane.showInputDialog("Ingrese su número de cédula:");   
+     JOptionPane.showMessageDialog(null, "Bienvenido a la Agencia Aduanal"); 
         
 menu ();
+subMenu ();
 }
 
     public static void menu() {
-     JOptionPane.showMessageDialog(null, "Elija la opción deseada: ");  
         
       int opcionMenu = 0;
       
@@ -24,7 +22,7 @@ menu ();
         while (opcionMenu != 6) {
 
             //mostrar menu
-            String textoMenu = "Menu Principal: \n"
+            String textoMenu = "Menu Principal: \n Elja la opción deseada \n"
                     + "1. Ingreso de trámite \n"
                     + "2. Análisis de trámites en “Recepción” \n"
                     + "3. Análisis de trámites en “Documentos” \n"
@@ -39,12 +37,9 @@ menu ();
                 case 1:{ingreso();
                 menu (); 
                     break;}
-                
                 case 2:{recepcion();
                 menu (); 
                     break;}
-                    
-               
                 case 3:{documentos();
                 menu (); 
                     break;}
@@ -71,19 +66,19 @@ menu ();
                         subMenu = Integer.parseInt(JOptionPane.showInputDialog(textosubMenu));
                         
                         switch (subMenu) {
-                            case 1:
-                                JOptionPane.showMessageDialog(null, "Sub - opcion 1");
-                                break;
-                            case 2:
-                                JOptionPane.showMessageDialog(null, "Sub - opcion 2");
-                                break;
-                            case 3:
-                                JOptionPane.showMessageDialog(null, "Sub - opcion 3");
-                                break;
-                            case 4:
-                                JOptionPane.showMessageDialog(null, "Sub - opcion 4");
-                                break;
-                            default:
+                            case 1:{desertados();
+                            subMenu (); 
+                            break;}
+                            case 2: {porFila();
+                            subMenu (); 
+                            break;}
+                            case 3:{finalizados();
+                            subMenu (); 
+                            break;}
+                            case 4:{pagos();
+                            subMenu (); 
+                            break;}
+                            case 5 :
                                 break;
                         }
                     }
@@ -96,27 +91,46 @@ menu ();
      }
     }
     
-    //
+    //STATIC VOID MENU PRINCIPAL
     public static void ingreso() {
-        String nombre = JOptionPane.showInputDialog("Ingrese A:");
+     String nombre = JOptionPane.showInputDialog("Digite A:");
     }
   
     public static void recepcion() {
-        String nombre = JOptionPane.showInputDialog("Ingrese B:");
+        String nombre = JOptionPane.showInputDialog("Digite B:");
     }
     
    public static void documentos() {
-        String nombre = JOptionPane.showInputDialog("Ingrese C:");
+        String nombre = JOptionPane.showInputDialog("Digite C:");
     } 
    
    public static void cajas() {
-        String nombre = JOptionPane.showInputDialog("Ingrese D:");
+        String nombre = JOptionPane.showInputDialog("Digite D:");
     }
    
    public static void reportes() {
-        String nombre = JOptionPane.showInputDialog("Ingrese E:");
+        String nombre = JOptionPane.showInputDialog("Digite la opcion del Sub Menu:");
+    }
+
+    private static void subMenu() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
    
-   
+    //STATIC VOID SUBMENU 
   
+   public static void desertados() {
+        String nombre = JOptionPane.showInputDialog("Digite W:");
+    }
+    
+   public static void porFila() {
+        String nombre = JOptionPane.showInputDialog("Digite Z:");
+    } 
+   
+   public static void finalizados() {
+        String nombre = JOptionPane.showInputDialog("Digite Y:");
+    }
+   
+   public static void pagos() {
+        String nombre = JOptionPane.showInputDialog("Digite Z:");
+    }  
 }

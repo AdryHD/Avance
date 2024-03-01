@@ -5,17 +5,27 @@ import javax.swing.JOptionPane;
 
 public class Avance {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
+     JOptionPane.showMessageDialog(null, "Bienvenido a la Agencia Aduanal");
+     String nombre = JOptionPane.showInputDialog("Ingrese su nombre:");
+     String cedula = JOptionPane.showInputDialog("Ingrese su número de cédula:");   
+        
+menu ();
+}
+
+    public static void menu() {
+     JOptionPane.showMessageDialog(null, "Elija la opción deseada: ");  
+        
       int opcionMenu = 0;
-      String nombre = JOptionPane.showInputDialog("Ingrese su nombre:");
-      String cedula = JOptionPane.showInputDialog("Ingrese su número de cédula:");
+      
 
         //ciclo para mostrar menu
         
         while (opcionMenu != 6) {
 
             //mostrar menu
-            String textoMenu = "1. Ingreso de trámite \n"
+            String textoMenu = "Menu Principal: \n"
+                    + "1. Ingreso de trámite \n"
                     + "2. Análisis de trámites en “Recepción” \n"
                     + "3. Análisis de trámites en “Documentos” \n"
                     + "4. Análisis de trámites en “Cajas”  \n"
@@ -26,19 +36,25 @@ public class Avance {
 
 // evaluar opcion
             switch (opcionMenu) {
-                case 1:
-                    JOptionPane.showMessageDialog(null, "Eligio la opcion 1");
-                    break;
-                case 2:
-                    JOptionPane.showMessageDialog(null, "Eligio la opcion 2");
-                    break;
-                case 3:
-                    JOptionPane.showMessageDialog(null, "Eligio la opcion 3");
-                    break;
-                case 4:
-                    JOptionPane.showMessageDialog(null, "Eligio la opcion 4");
-                    break;
-                case 5:
+                case 1:{ingreso();
+                menu (); 
+                    break;}
+                
+                case 2:{recepcion();
+                menu (); 
+                    break;}
+                    
+               
+                case 3:{documentos();
+                menu (); 
+                    break;}
+                    
+                case 4:{cajas();
+                menu (); 
+                    break;}
+                    
+                case 5:{reportes();
+               
                     JOptionPane.showMessageDialog(null, "Sub menú de Reportes");
                     int subMenu = 0;
                     
@@ -72,15 +88,35 @@ public class Avance {
                         }
                     }
 
-                    break;
-            case 6:
-                break;
-                default:
-                    JOptionPane.showMessageDialog(null, opcionMenu + " Este número no es una opcion válida.");
-                    break;
-            }
+                    break;}
+            case 6: System.exit(opcionMenu);
+               
+            
         }
      }
-  
+    }
     
+    //
+    public static void ingreso() {
+        String nombre = JOptionPane.showInputDialog("Ingrese A:");
+    }
+  
+    public static void recepcion() {
+        String nombre = JOptionPane.showInputDialog("Ingrese B:");
+    }
+    
+   public static void documentos() {
+        String nombre = JOptionPane.showInputDialog("Ingrese C:");
+    } 
+   
+   public static void cajas() {
+        String nombre = JOptionPane.showInputDialog("Ingrese D:");
+    }
+   
+   public static void reportes() {
+        String nombre = JOptionPane.showInputDialog("Ingrese E:");
+    }
+   
+   
+  
 }

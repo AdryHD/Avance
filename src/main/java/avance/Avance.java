@@ -45,7 +45,10 @@ public class Avance {
                 case 4:{cajas();
                 menu (); 
                     break;}
-                    case 6:
+                case 5:{ subMenuReportes();
+                break;
+                }
+                case 6:
                     JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
                     return;
                 default:
@@ -138,14 +141,16 @@ public class Avance {
 
     // Método para mostrar el submenú de reportes
     public static void subMenuReportes() {
-        // ciclo para mostrar submenú
-        while (true) {
+ int opcionSubMenu = 0;        
+// ciclo para mostrar submenú
+       while (opcionSubMenu != 5) {
                     String textosubMenu = "1. Reporte de trámites desertados \n"
                             + "2. Reporte de trámites por fila  \n"
                             + "3. Reporte de trámites finalizados  \n"
                             + "4. Reporte de pagos  \n"
                             + "5. Menu principal  \n";
         // evaluar opción del submenú
+         opcionSubMenu = Integer.parseInt(JOptionPane.showInputDialog(textosubMenu));
             switch (opcionSubMenu) {
                   case 1:
                     JOptionPane.showMessageDialog(null, "Falta");

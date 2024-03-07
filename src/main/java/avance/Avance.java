@@ -11,7 +11,7 @@ public class Avance {
 }
 
     public static void menu() {
-        
+      Tramite tramite = new Tramite();
       int opcionMenu = 0;
       
 
@@ -32,22 +32,22 @@ public class Avance {
 
 // evaluar opcion
             switch (opcionMenu) {
-                case 1:{ingreso();
+                case 1:
+                tramite.obtenerDatos();
                 menu (); 
-                    break;}
-                case 2:{recepcion();
+                    break;
+                case 2:recepcion();
                 menu (); 
-                    break;}
-                case 3:{documentos();
+                    break;
+                case 3:documentos();
                 menu (); 
-                    break;}
+                    break;
                     
-                case 4:{cajas();
+                case 4:cajas();
                 menu (); 
-                    break;}
-                case 5:{ subMenuReportes();
+                    break;
+                case 5: subMenuReportes();
                 break;
-                }
                 case 6:
                     JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
                     return;
@@ -55,17 +55,15 @@ public class Avance {
                     JOptionPane.showMessageDialog(null, "Opción inválida");
             }
         }
-    }
     // Datos de ingreso de trámites
-    public static void ingreso() {
-        String nombre = JOptionPane.showInputDialog("Ingrese su nombre completo:");
-        String cedula = JOptionPane.showInputDialog("Ingrese su número de cédula:");
-        String tipoTramite = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de trámite que deseea realizar:",
-                    "Tipo de Trámite", JOptionPane.INFORMATION_MESSAGE, null, //con ayuda de https://recursosformacion.com/2018/05/java-programadores-9-7-cuadros-dialogo/
-                    new String[]{"Registro exportador", "Exoneración impuestos", "Activación de Registro de Importador",
-                            "Permisos especiales productos"}, "Registro exportador");
+//    public static void ingreso() {
+//        String nombre = JOptionPane.showInputDialog("Ingrese su nombre completo:");
+//        String cedula = JOptionPane.showInputDialog("Ingrese su número de cédula:");
+//        String tipoTramite = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de trámite que deseea realizar:",
+//                    "Tipo de Trámite", JOptionPane.INFORMATION_MESSAGE, null, //con ayuda de https://recursosformacion.com/2018/05/java-programadores-9-7-cuadros-dialogo/
+//                    new String[]{"Registro exportador", "Exoneración impuestos", "Activación de Registro de Importador",
+//                            "Permisos especiales productos"}, "Registro exportador");
     }
-
     public static void recepcion() {
         // Solicitar tipo de cliente
         boolean tipoCliente = JOptionPane.showConfirmDialog(null, "¿Es cliente preferencial?", "Cliente Preferencial",

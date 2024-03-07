@@ -1,21 +1,34 @@
 package avance;
 
+import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
+import java.time.format.DateTimeFormatter;
 
 public class Tramite {
     private String nombre;
     private String cedula;
     private String tipoTramite;
     private boolean clientePreferencial;
+    private String hora;
 
     public Tramite() {
     }
 
-    public Tramite(String nombre, String cedula, String tipoTramite, boolean clientePreferencial) {
+    public Tramite(String nombre, String cedula, String tipoTramite, boolean clientePreferencial, String hora) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.tipoTramite = tipoTramite;
         this.clientePreferencial = clientePreferencial;
+        this.hora = hora;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalDateTime hora) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.hora = hora.format(formatter);
     }
 
     public String getNombre() {
@@ -59,8 +72,7 @@ public class Tramite {
                     "1- Registro exportador" + "\n" +
                     "2- Exoneración impuestos" + "\n" +
                     "3- Activación de registro de importador" + "\n" +
-                    "4- Permisos especiales productos" + "\n" +
-                    "5- Salir"));
+                    "4- Permisos especiales productos" + "\n"));
         switch (tipoTramite){
             case 1:
                 setTipoTramite("Registro exportador");
@@ -74,13 +86,22 @@ public class Tramite {
             case 4:
                 setTipoTramite("Permisos especiales productos");
                 break;
-            case 5:
-                break;
             default:
                 JOptionPane.showMessageDialog(null, "Digíte un número correcto entre 1 y 5");
                 break;
             }
-        }         
+        LocalDateTime fechaHora = LocalDateTime.now();
+        setHora(fechaHora);
+        boolean preferencial = Boolean.parseBoolean(JOptionPane.showInputDialog("¿Es cliente preferencial? true/false"));
+        } 
+
+    public void mostrarDatos(){
+        JOptionPane.showMessageDialog(null,"Nombre: " + getNombre() + "\n" +
+                "Cédula: " + getCedula() + "\n" +
+                "Tipo de trámite: " + getTipoTramite() + "\n" +
+                "Cliente preferencial: " + isClientePreferencial() + "\n" +
+                "Fecha: " + getHora());
+    }
 }
 
 

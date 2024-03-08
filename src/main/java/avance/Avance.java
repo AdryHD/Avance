@@ -20,7 +20,7 @@ public class Avance {
         while (opcionMenu != 6) {
 
             //mostrar menu
-            String textoMenu = "Menu Principal: \n Elja la opción deseada \n"
+            String textoMenu = "*** Menú Principal *** \n Elija la opción deseada: \n"
                     + "1. Ingreso de trámite \n"
                     + "2. Análisis de trámites en “Recepción” \n"
                     + "3. Análisis de trámites en “Documentos” \n"
@@ -42,7 +42,6 @@ public class Avance {
                 case 3:documentos();
                 menu (); 
                     break;
-                    
                 case 4:cajas();
                 menu (); 
                     break;

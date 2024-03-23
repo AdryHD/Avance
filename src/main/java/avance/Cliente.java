@@ -1,19 +1,44 @@
 package avance;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
+
 public class Cliente {
     
-    //ATRIBUTOS
+    //Atributos
     private String nombre;
-    private String identificacion;
-    private boolean preferencial;
-    private Tramite tipoTramite = new Tramite ();
-
-//fecha
-//hora
+    private int identificacion;
+    private String tipoTramite;
+    private boolean tipoCliente;
+    private Date fechaHoraIngreso;
     
- 
-  //setter y getter
-    public String getNombre() {
+    public Cliente() {
+        
+    }
+    public Cliente(String nombre, int identificacion, String tipoTramite, boolean tipoCliente, String fechaHoraIngreso) throws ParseException {
+        this.nombre = nombre;
+        this.identificacion = identificacion;
+        this.tipoTramite = tipoTramite;
+        this.tipoCliente = tipoCliente;
+        DateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        this.fechaHoraIngreso = formateador.parse(fechaHoraIngreso);
+    }
+    public void pedirDatos() {
+        this.nombre = JOptionPane.showInputDialog("Digite su nombre completo");
+        this.identificacion = Integer.parseInt(JOptionPane.showInputDialog("Digite su número de cédula"));
+        this.tipoTramite = JOptionPane.showInputDialog("Tipo de Trámite \n *************\n"
+                + "1. Registro Exportador \n" 
+                + "2. Exoneración Impuestos \n" 
+                + "3. Activación de Registro Importador \n" 
+                + "4. Permisos Especiales Productos");
+        this.tipoCliente = JOptionPane.showConfirmDialog(null, "¿Es cliente preferencial?", "Cliente Preferencial",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        this.fechaHoraIngreso = new Date();
+    }
+     public String getNombre() {
         return nombre;
     }
 
@@ -21,20 +46,45 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getIdentificacion() {
+    public int getIdentificacion() {
         return identificacion;
     }
 
-    public void setIdentificacion(String identificacion) {
+    public void setIdentificacion(int identificacion) {
         this.identificacion = identificacion;
     }
 
-    public boolean isPreferencial() {
-        return preferencial;
+    public String getTipoTramite() {
+        return tipoTramite;
     }
 
-    public void setPreferencial(boolean preferencial) {
-        this.preferencial = preferencial;
+    public void setTipoTramite(String tipoTramite) {
+        this.tipoTramite = tipoTramite;
     }
 
+    public boolean isTipoCliente() {
+        return tipoCliente;
+    }
+
+    public void setTipoCliente(boolean tipoCliente) {
+        this.tipoCliente = tipoCliente;
+    }
+
+    public Date getFechaHoraIngreso() {
+        return fechaHoraIngreso;
+    }
+
+    public void setFechaHoraIngreso(Date fechaHoraIngreso) {
+        this.fechaHoraIngreso = fechaHoraIngreso;
+    }
+
+    @Override
+    public String toString() {
+        return "Recepcion \n" 
+                + "Nombre: " + nombre + "\n"
+                + "Identificacion: " + identificacion + "\n"
+                + "Tipo de Trámite: " + tipoTramite + "\n"
+                + "Tipo de Cliente: " + tipoCliente + "\n"
+                + "Fecha y Hora de Ingreso: " + fechaHoraIngreso + "\n";
+    }
 }

@@ -96,11 +96,11 @@ public class Tramite {
         } 
 
     public void mostrarDatos(){
-        JOptionPane.showMessageDialog(null,"Nombre: " + getNombre() + "\n" +
-                "Cédula: " + getCedula() + "\n" +
-                "Tipo de trámite: " + getTipoTramite() + "\n" +
-                "Cliente preferencial: " + isClientePreferencial() + "\n" +
-                "Fecha: " + getHora());
+        JOptionPane.showMessageDialog(null,"Nombre: " + getNombre() + "\n"
+                + "Cédula: " + getCedula() + "\n"
+                + "Tipo de trámite: " + getTipoTramite() + "\n"
+                + "Cliente preferencial: " + isClientePreferencial() + "\n"
+                + "Fecha: " + getHora());
     }
 }
 

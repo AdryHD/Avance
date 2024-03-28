@@ -2,70 +2,74 @@ package avance;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class Avance {
 
-    static Cliente[] cliente = new Cliente[10];
+    
     static int cantidadCliente = 3;
 
     public static void main(String[] args) {
-        JOptionPane.showMessageDialog(null, "Bienvenido a la Agencia Aduanal");
+        menu();
+    }
+    
+    
+      public static void menu() {
+      Cliente[] listaClientes = new Cliente[10];
 
-        int opcion = 0;
+      Tramite tramite = new Tramite();
+      Cliente cliente = new Cliente();
+      int opcionMenu = 0;
+      
+     
+        //ciclo para mostrar menu
         
-        while (opcion != 6){ 
-            String textoMenuPrincipal = "1. Ingreso de Trámite \n"
-                    + "2. Análisis de Trámites en Recepción \n"
-                    + "3. Análisis de Trámites en Documentos \n"
-                    + "4. Análisis de Trámites en Cajas \n"
-                    + "5. Menú de Reportes \n"
-                    + "6. Salir \n";
-            opcion = Integer.parseInt(JOptionPane.showInputDialog(textoMenuPrincipal));
-            
-            switch (opcion) { 
-                case 1:
-                    registroTramite();
+        while (opcionMenu != 6) {
+
+            //mostrar menu
+            String textoMenu = "*** Menú Principal *** \n Elija la opción deseada: \n"
+                    + "1. Ingreso del Cliente  \n"
+                    + "2. Ingreso de trámite \n"
+                    + "3. Análisis de trámites en “Recepción” \n"
+                    + "4. Análisis de trámites en “Documentos” \n"
+                    + "5. Análisis de trámites en “Cajas”  \n"
+                    + "6. Reportes  \n"
+                    + "7. Salir";
+
+                opcionMenu = Integer.parseInt(JOptionPane.showInputDialog(textoMenu));
+
+// evaluar opcion
+            switch (opcionMenu) {
+                case 1:{
+                    crearCliente(listaClientes, cliente);
+                    menu ();
+                    break;}
+           
+                case 2:{
+                    obtenerDatos(cliente,tramite);
+                    menu (); 
+                    break;}
+                case 3:recepcion();
+                menu (); 
                     break;
-                case 2:
-                    tramiteRecepcion();
-                    break;
-                case 3:
-                    tramitesDocumentos();
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    int opcionReporte = 0;
-                    while (opcionReporte !=5) {
-                        String textoMenuReportes = "1. Reporte de Trámites Desertados \n"
-                                + "2. Reporte de Trámites por Fila \n"
-                                + "3. Reporte de Trámites Finalizados \n"
-                                + "4. Reporte de Pagos \n"
-                                + "5. Salir \n";
-                        opcionReporte = Integer.parseInt(JOptionPane.showInputDialog(textoMenuReportes));
-                        switch (opcionReporte) {
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                            case 4:
-                                break;
-                        }
-                    }
-                    break;
-                case 6:
+                case 4:{documentos();
+                menu (); 
+                    break;}
+                case 5:{cajas();
+                menu (); 
+                    break;}
+                case 6: subMenuReportes();
+                break;
+                case 7:
                     JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
                     return;
                 default:
-                    JOptionPane.showMessageDialog(null, "Opción inválidad");
-                    break;
+                    JOptionPane.showMessageDialog(null, "Opción inválida");
             }
         }
-    }
+      }
     public static void registroTramite() {
         if (cantidadCliente < 10) {
             Cliente rece = new Cliente();
@@ -77,7 +81,7 @@ public class Avance {
             JOptionPane.showInternalConfirmDialog(null, "Ya no hay espacion disponible en recepción");
         }
     }
-    public static void tramiteRecepcion() {
+    public static void recepcion() {
         String textoCliente = "";
         if (cantidadCliente > 0) {
             
@@ -122,7 +126,7 @@ public class Avance {
         }         
     }
     
-    public static void tramitesDocumentos() { 
+    public static void documentos() { 
             if (cantidadCliente > 0) {
             String tipoTramite = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de trámite que desea analizar:",
                     "Tipo de Trámite", JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Cliente Preferencial", "Cliente Normal"}, "");
@@ -187,6 +191,27 @@ public class Avance {
             JOptionPane.showMessageDialog(null, "No hay trámites en documentos para analizar");
             }
         }
+    
+    public static void crearCliente(Cliente[] listaClientes, Cliente cliente){
+    boolean continuar = true;
+    while (continuar){
+        
+    cliente.setNombre(JOptionPane.showInputDialog("Digite el nombre:"));
+    cliente.setIdentificacion(JOptionPane.showInputDialog("Digite el numero de cedula:"));
+    int respuesta = JOptionPane.showConfirmDialog(null, "El cliente es Preferencial?","preferencial",YES_NO_OPTION);
+    //cliente.setPreferencial(Boolean.parseBoolean(JOptionPane.showInputDialog("El Cliente es preferencial (true/false)")));
+    //JOptionPane.showConfirmDialog(parentComponent, cliente, title, YES_NO_OPTION)
+    if(respuesta == JOptionPane.YES_OPTION){
+        cliente.setPreferencial(true);
+    }else {cliente.setPreferencial(false);}
+    listaClientes.add(cliente);
+
+    int continua = JOptionPane.showConfirmDialog(null, "Desea agregar otro cliente?","Continuar",YES_NO_OPTION);
+      if(continua == JOptionPane.YES_OPTION){
+       continuar = true;
+    }else {continuar=false;}
+    }
+    
 //    public static void tramitesCajas() {
 //         //Solicitar el tipo de trámite.
 //            String tipoTramite = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de trámite que desea analizar:",

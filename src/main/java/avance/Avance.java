@@ -9,7 +9,7 @@ import static javax.swing.JOptionPane.YES_NO_OPTION;
 
 public class Avance {
 
-    
+    static Cliente[] cliente = new Cliente[10];
     static int cantidadCliente = 3;
 
     public static void main(String[] args) {
@@ -52,22 +52,44 @@ public class Avance {
                     registroTramite ();
                     menu (); 
                     break;}
-                case 3:recepcion();
+                case 3:tramiteRecepcion();
                 menu (); 
                     break;
-                case 4:{pedirDocumentos();
+                case 4:{pedirDocumentos(listaClientes);
                 menu (); 
                     break;}
-                case 5:{tramiteCajas();
+                case 5:{tramitesCajas();
                 menu (); 
                     break;}
-                case 6: subMenuReportes();
-                break;
+                case 6: 
+                    int opcionReporte = 0;
+                    while (opcionReporte !=5) {
+                        String textoMenuReportes = "1. Reporte de Trámites Desertados \n"
+                                + "2. Reporte de Trámites por Fila \n"
+                                + "3. Reporte de Trámites Finalizados \n"
+                                + "4. Reporte de Pagos \n"
+                                + "5. Salir \n";
+                        opcionReporte = Integer.parseInt(JOptionPane.showInputDialog(textoMenuReportes));
+                        switch (opcionReporte) {
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                        }
+                    }
+                    break;
                 case 7:
                     JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
                     return;
                 default:
-                    JOptionPane.showMessageDialog(null, "Opción inválida");
+                    JOptionPane.showMessageDialog(null, "Opción inválidad");
+                    break;
+            
+                   
             }
         }
       }
@@ -83,7 +105,7 @@ public class Avance {
         }
     }
     
-    public static void recepcion(null[] cliente null[] cliente) {
+    public static void tramiteRecepcion() {
         String textoCliente = "";
         if (cantidadCliente > 0) {
             
@@ -194,6 +216,8 @@ public class Avance {
             }
         }
     
+ 
+    
     public static void crearCliente(Cliente[] listaClientes, Cliente cliente){
     boolean continuar = true;
     while (continuar){
@@ -256,6 +280,9 @@ public class Avance {
             JOptionPane.showMessageDialog(null, "No hay trámites en cajas para analizar del tipo de cliente seleccionado.");
         }
     }
+
+
+
 //
 //    private static double montoTramite(String tipoTramite) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
@@ -267,14 +294,7 @@ public class Avance {
 
 
 
-        }
-    
-  
-        
-        //Reportes
-            
-        
-    
+      
 
 
 

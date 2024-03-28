@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
 
 public class Avance {
 
@@ -48,16 +49,16 @@ public class Avance {
                     break;}
            
                 case 2:{
-                    obtenerDatos(cliente,tramite);
+                    registroTramite ();
                     menu (); 
                     break;}
                 case 3:recepcion();
                 menu (); 
                     break;
-                case 4:{documentos();
+                case 4:{pedirDocumentos();
                 menu (); 
                     break;}
-                case 5:{cajas();
+                case 5:{tramiteCajas();
                 menu (); 
                     break;}
                 case 6: subMenuReportes();
@@ -81,7 +82,8 @@ public class Avance {
             JOptionPane.showInternalConfirmDialog(null, "Ya no hay espacion disponible en recepción");
         }
     }
-    public static void recepcion() {
+    
+    public static void recepcion(null[] cliente null[] cliente) {
         String textoCliente = "";
         if (cantidadCliente > 0) {
             
@@ -126,7 +128,7 @@ public class Avance {
         }         
     }
     
-    public static void documentos() { 
+    public static void pedirDocumentos(Cliente[] cliente) { 
             if (cantidadCliente > 0) {
             String tipoTramite = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de trámite que desea analizar:",
                     "Tipo de Trámite", JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Cliente Preferencial", "Cliente Normal"}, "");
@@ -198,60 +200,62 @@ public class Avance {
         
     cliente.setNombre(JOptionPane.showInputDialog("Digite el nombre:"));
     cliente.setIdentificacion(JOptionPane.showInputDialog("Digite el numero de cedula:"));
-    int respuesta = JOptionPane.showConfirmDialog(null, "El cliente es Preferencial?","preferencial",YES_NO_OPTION);
+        int respuesta = JOptionPane.showConfirmDialog(null, "El cliente es Preferencial?","preferencial",YES_NO_OPTION);
     //cliente.setPreferencial(Boolean.parseBoolean(JOptionPane.showInputDialog("El Cliente es preferencial (true/false)")));
     //JOptionPane.showConfirmDialog(parentComponent, cliente, title, YES_NO_OPTION)
-    if(respuesta == JOptionPane.YES_OPTION){
+            
+        if(respuesta == JOptionPane.YES_OPTION){
         cliente.setPreferencial(true);
-    }else {cliente.setPreferencial(false);}
-    listaClientes.add(cliente);
+            }else {cliente.setPreferencial(false);}
+    listaClientes[listaClientes.length-1] = (cliente);
 
-    int continua = JOptionPane.showConfirmDialog(null, "Desea agregar otro cliente?","Continuar",YES_NO_OPTION);
-      if(continua == JOptionPane.YES_OPTION){
+        int continua = JOptionPane.showConfirmDialog(null, "Desea agregar otro cliente?","Continuar",YES_NO_OPTION);
+            if(continua == JOptionPane.YES_OPTION){
        continuar = true;
-    }else {continuar=false;}
+            }else {continuar=false;}
+    }
     }
     
-//    public static void tramitesCajas() {
-//         //Solicitar el tipo de trámite.
-//            String tipoTramite = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de trámite que desea analizar:",
-//                    "Tipo de Trámite", JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Cliente Preferencial", "Cliente Normal"}, "");
-//             //Pago
-//        boolean opcionPago = JOptionPane.showConfirmDialog(null, "¿El cliente va a pagar el trámite?", 
-//                "Cliente Preferencial", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
-//        // Buscar el primer trámite en la fila del tipo seleccionado
-//        boolean tramiteEncontrado = false;
-//        for (int i = 0; i < cantidadCliente; i++) {
+    public static void tramitesCajas() {
+         //Solicitar el tipo de trámite.
+            String tipoTramite = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de trámite que desea analizar:",
+                    "Tipo de Trámite", JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Cliente Preferencial", "Cliente Normal"}, "");
+             //Pago
+        boolean opcionPago = JOptionPane.showConfirmDialog(null, "¿El cliente va a pagar el trámite?", 
+                "Cliente Preferencial", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        // Buscar el primer trámite en la fila del tipo seleccionado
+        boolean tramiteEncontrado = false;
+        for (int i = 0; i < cantidadCliente; i++) {
 //            if (cliente[i].getTipoTramite().equals(tipoTramite)) {
-//                tramiteEncontrado = true;
-//
-//                // Verificar si el cliente paga o no el trámite
-//                int decisionPago = JOptionPane.showOptionDialog(null, "¿El cliente paga el trámite?",
-//                        "Pago del Trámite", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
-//                        new String[]{"Sí", "No"}, "Sí");
-//
-//                if (decisionPago == JOptionPane.NO_OPTION) {
-//                    // Retirar al cliente de la agencia y almacenar el registro para trámites desertados
-//                    JOptionPane.showMessageDialog(null, "Cliente retirado de la agencia. Trámite desertado.");
-//                } else {
-//                    // Crear un registro de pago
-//                    double montoPagado = montoTramite(cliente[i].getTipoTramite());
-//                    Date fechaPago = new Date();
-//                    RegistroPago registroPago = new RegistroPago(cliente[i].getTipoTramite(), montoPagado, fechaPago);
-//                      // Mostrar información del pago
-//                    JOptionPane.showMessageDialog(null, "Trámite pagado exitosamente. Monto: $" + montoPagado + "\nFecha del Pago: " + fechaPago);
-//
-//                    // Retirar al cliente de la agencia
-//                    cliente[i] = null;
-//                    cantidadCliente--;
-//                }
-//                break;
-//            }
-//        }
-//        if (!tramiteEncontrado) {
-//            JOptionPane.showMessageDialog(null, "No hay trámites en cajas para analizar del tipo de cliente seleccionado.");
-//        }
-//    }
+                tramiteEncontrado = true;
+
+                // Verificar si el cliente paga o no el trámite
+                int decisionPago = JOptionPane.showOptionDialog(null, "¿El cliente paga el trámite?",
+                        "Pago del Trámite", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+                        new String[]{"Sí", "No"}, "Sí");
+
+                if (decisionPago == JOptionPane.NO_OPTION) {
+                    // Retirar al cliente de la agencia y almacenar el registro para trámites desertados
+                    JOptionPane.showMessageDialog(null, "Cliente retirado de la agencia. Trámite desertado.");
+                } else {
+                    // Crear un registro de pago
+                    double montoPagado = montoTramite(cliente[i].getTipoTramite());
+                    Date fechaPago = new Date();
+                    RegistroPago registroPago = new RegistroPago(cliente[i].getTipoTramite(), montoPagado, fechaPago);
+                      // Mostrar información del pago
+                    JOptionPane.showMessageDialog(null, "Trámite pagado exitosamente. Monto: $" + montoPagado + "\nFecha del Pago: " + fechaPago);
+
+                    // Retirar al cliente de la agencia
+                    cliente[i] = null;
+                    cantidadCliente--;
+                }
+                break;
+            }
+        }
+        if (!tramiteEncontrado) {
+            JOptionPane.showMessageDialog(null, "No hay trámites en cajas para analizar del tipo de cliente seleccionado.");
+        }
+    }
 //
 //    private static double montoTramite(String tipoTramite) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

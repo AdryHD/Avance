@@ -1,5 +1,4 @@
 package avance;
-
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import java.time.format.DateTimeFormatter;
@@ -64,17 +63,5 @@ public class Tramite {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-  
-<<<<<<< Updated upstream
 
-
-    
-
-
-=======
-
-
-
-
->>>>>>> Stashed changes
 }

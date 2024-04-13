@@ -1,21 +1,17 @@
 package avance;
 
-<<<<<<< Updated upstream
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
-=======
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
 import avance.Tramite;
 import avance.Cliente;
->>>>>>> Stashed changes
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 
 public class Avance {
-
     static Cliente[] cliente = new Cliente[10];
     static int cantidadCliente = 3;
 
@@ -50,7 +46,6 @@ public class Avance {
 
 // evaluar opcion
             switch (opcionMenu) {
-<<<<<<< Updated upstream
                 case 1:{
                     crearCliente(listaClientes, cliente);
                     menu ();
@@ -67,7 +62,7 @@ public class Avance {
                 menu (); 
                     break;}
                 case 5:{tramitesCajas();
-=======
+
                 case 1:
                     
                  
@@ -81,7 +76,7 @@ public class Avance {
                 menu (); 
                     break;
                 case 4:documentos();
->>>>>>> Stashed changes
+
                 menu (); 
                     break;}
                 case 6: 
@@ -105,14 +100,13 @@ public class Avance {
                         }
                     }
                     break;
-<<<<<<< Updated upstream
-=======
+
                 case 5:cajas();
                 menu (); 
                     break;
                 case 6: subMenuReportes();
                 break;
->>>>>>> Stashed changes
+
                 case 7:
                     JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
                     return;
@@ -123,8 +117,11 @@ public class Avance {
                    
             }
         }
-<<<<<<< Updated upstream
+
       }
+      
+      
+      
     public static void registroTramite() {
         if (cantidadCliente < 10) {
             Cliente rece = new Cliente();
@@ -135,7 +132,7 @@ public class Avance {
         else { 
             JOptionPane.showInternalConfirmDialog(null, "Ya no hay espacion disponible en recepción");
         }
-=======
+
     // Datos de ingreso de trámites
 //    public static void ingreso() {
 //        String nombre = JOptionPane.showInputDialog("Ingrese su nombre completo:");
@@ -150,7 +147,7 @@ public class Avance {
         boolean tipoCliente = JOptionPane.showConfirmDialog(null, "¿Es cliente preferencial?", "Cliente Preferencial",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION; //con ayuda de https://recursosformacion.com/2018/05/java-programadores-9-7-cuadros-dialogo/
         
->>>>>>> Stashed changes
+
     }
     
     public static void tramiteRecepcion() {
@@ -294,16 +291,16 @@ public class Avance {
                     "Tipo de Trámite", JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Cliente Preferencial", "Cliente Normal"}, "");
              //Pago
         boolean opcionPago = JOptionPane.showConfirmDialog(null, "¿El cliente va a pagar el trámite?", 
-<<<<<<< Updated upstream
+
                 "Cliente Preferencial", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
         // Buscar el primer trámite en la fila del tipo seleccionado
         boolean tramiteEncontrado = false;
         for (int i = 0; i < cantidadCliente; i++) {
 //            if (cliente[i].getTipoTramite().equals(tipoTramite)) {
                 tramiteEncontrado = true;
-=======
+
                 "Cliente Preferencial", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION; 
->>>>>>> Stashed changes
+
 
                 // Verificar si el cliente paga o no el trámite
                 int decisionPago = JOptionPane.showOptionDialog(null, "¿El cliente paga el trámite?",
@@ -327,12 +324,12 @@ public class Avance {
                 }
                 break;
             }
-        }
-<<<<<<< Updated upstream
+        
+
         if (!tramiteEncontrado) {
             JOptionPane.showMessageDialog(null, "No hay trámites en cajas para analizar del tipo de cliente seleccionado.");
         }
-=======
+
     }
     
     
@@ -396,6 +393,7 @@ public void crearCliente(Cliente cliente){
 
 }
 }
+
     /*STATIC VOID MENU PRINCIPAL
     public static void ingreso() {
      String nombre = JOptionPane.showInputDialog("Digite A:");

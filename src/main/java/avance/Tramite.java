@@ -65,9 +65,16 @@ public class Tramite {
     }
 
   
+<<<<<<< Updated upstream
 
 
     
 
 
+=======
+
+
+
+
+>>>>>>> Stashed changes
 }

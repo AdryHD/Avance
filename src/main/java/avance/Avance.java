@@ -1,10 +1,17 @@
 package avance;
 
+<<<<<<< Updated upstream
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+=======
+import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
+import avance.Tramite;
+import avance.Cliente;
+>>>>>>> Stashed changes
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 
 public class Avance {
@@ -43,6 +50,7 @@ public class Avance {
 
 // evaluar opcion
             switch (opcionMenu) {
+<<<<<<< Updated upstream
                 case 1:{
                     crearCliente(listaClientes, cliente);
                     menu ();
@@ -59,6 +67,21 @@ public class Avance {
                 menu (); 
                     break;}
                 case 5:{tramitesCajas();
+=======
+                case 1:
+                    
+                 
+                    break;
+           
+                case 2:
+                    obtenerDatos(cliente,tramite);
+                menu (); 
+                    break;
+                case 3:recepcion();
+                menu (); 
+                    break;
+                case 4:documentos();
+>>>>>>> Stashed changes
                 menu (); 
                     break;}
                 case 6: 
@@ -82,6 +105,14 @@ public class Avance {
                         }
                     }
                     break;
+<<<<<<< Updated upstream
+=======
+                case 5:cajas();
+                menu (); 
+                    break;
+                case 6: subMenuReportes();
+                break;
+>>>>>>> Stashed changes
                 case 7:
                     JOptionPane.showMessageDialog(null, "Saliendo del sistema...");
                     return;
@@ -92,6 +123,7 @@ public class Avance {
                    
             }
         }
+<<<<<<< Updated upstream
       }
     public static void registroTramite() {
         if (cantidadCliente < 10) {
@@ -103,6 +135,22 @@ public class Avance {
         else { 
             JOptionPane.showInternalConfirmDialog(null, "Ya no hay espacion disponible en recepción");
         }
+=======
+    // Datos de ingreso de trámites
+//    public static void ingreso() {
+//        String nombre = JOptionPane.showInputDialog("Ingrese su nombre completo:");
+//        String cedula = JOptionPane.showInputDialog("Ingrese su número de cédula:");
+//        String tipoTramite = (String) JOptionPane.showInputDialog(null, "Seleccione el tipo de trámite que deseea realizar:",
+//                    "Tipo de Trámite", JOptionPane.INFORMATION_MESSAGE, null, //con ayuda de https://recursosformacion.com/2018/05/java-programadores-9-7-cuadros-dialogo/
+//                    new String[]{"Registro exportador", "Exoneración impuestos", "Activación de Registro de Importador",
+//                            "Permisos especiales productos"}, "Registro exportador");
+    }
+    public static void recepcion() {
+        // Solicitar tipo de cliente
+        boolean tipoCliente = JOptionPane.showConfirmDialog(null, "¿Es cliente preferencial?", "Cliente Preferencial",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION; //con ayuda de https://recursosformacion.com/2018/05/java-programadores-9-7-cuadros-dialogo/
+        
+>>>>>>> Stashed changes
     }
     
     public static void tramiteRecepcion() {
@@ -246,12 +294,16 @@ public class Avance {
                     "Tipo de Trámite", JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Cliente Preferencial", "Cliente Normal"}, "");
              //Pago
         boolean opcionPago = JOptionPane.showConfirmDialog(null, "¿El cliente va a pagar el trámite?", 
+<<<<<<< Updated upstream
                 "Cliente Preferencial", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
         // Buscar el primer trámite en la fila del tipo seleccionado
         boolean tramiteEncontrado = false;
         for (int i = 0; i < cantidadCliente; i++) {
 //            if (cliente[i].getTipoTramite().equals(tipoTramite)) {
                 tramiteEncontrado = true;
+=======
+                "Cliente Preferencial", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION; 
+>>>>>>> Stashed changes
 
                 // Verificar si el cliente paga o no el trámite
                 int decisionPago = JOptionPane.showOptionDialog(null, "¿El cliente paga el trámite?",
@@ -276,9 +328,94 @@ public class Avance {
                 break;
             }
         }
+<<<<<<< Updated upstream
         if (!tramiteEncontrado) {
             JOptionPane.showMessageDialog(null, "No hay trámites en cajas para analizar del tipo de cliente seleccionado.");
         }
+=======
+    }
+    
+    
+    public static void  obtenerDatos(Cliente cliente, Tramite tramite){
+
+        String cedula = JOptionPane.showInputDialog("Digíte la cédula del cliente: ");
+        
+        int tipoTramite = Integer.parseInt(JOptionPane.showInputDialog("Digíte el tipo de trámite" + "\n" +
+                    "1- Registro exportador" + "\n" +
+                    "2- Exoneración impuestos" + "\n" +
+                    "3- Activación de registro de importador" + "\n" +
+                    "4- Permisos especiales productos" + "\n"));
+        switch (tipoTramite){
+            case 1:
+                tramite.setTipoTramite("Registro exportador");
+                break;
+            case 2:
+                tramite.setTipoTramite("Exoneración impuestos");
+                break;
+            case 3:
+                tramite.setTipoTramite("Activación de registro de importador");
+                break;
+            case 4:
+                tramite.setTipoTramite("Permisos especiales productos");
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Digíte un número correcto entre 1 y 5");
+                break;
+            }
+        LocalDateTime fechaHora = LocalDateTime.now();
+        tramite.setHora(fechaHora);
+        boolean preferencial = Boolean.parseBoolean(JOptionPane.showInputDialog("¿Es cliente preferencial? true/false"));
+
+        } 
+
+    public void mostrarDatos(Cliente cliente, Tramite tramite){
+        JOptionPane.showMessageDialog(null,"Nombre: " + cliente.getNombre() + "\n" +
+                "Cédula: " + cliente.getIdentificacion() + "\n" +
+                "Tipo de trámite: " + tramite.getTipoTramite() + "\n" +
+                "Cliente preferencial: " + cliente.isPreferencial() + "\n" +
+                "Fecha: " + tramite.getHora());
+    }
+
+
+
+public void crearCliente(Cliente cliente){
+    boolean continuar = true;
+    while (continuar){
+        
+    cliente.setNombre(JOptionPane.showInputDialog("Digite el numero de cedula:"));
+    cliente.setIdentificacion(JOptionPane.showInputDialog("Digite el numero de cedula:"));
+    cliente.setPreferencial(Boolean.parseBoolean(JOptionPane.showInputDialog("El Cliente es preferencial (true/false)")));
+    //JOptionPane.showConfirmDialog(parentComponent, cliente, title, YES_NO_OPTION)
+    }
+
+    
+    //ArrayList<String> cars = new ArrayList<String>();
+    //cars.add("Volvo");
+
+  
+
+}
+}
+    /*STATIC VOID MENU PRINCIPAL
+    public static void ingreso() {
+     String nombre = JOptionPane.showInputDialog("Digite A:");
+    }
+  
+    public static void recepcion() {
+        String nombre = JOptionPane.showInputDialog("Digite B:");
+    }
+    
+   public static void documentos() {
+        String nombre = JOptionPane.showInputDialog("Digite C:");
+    } 
+   
+   public static void cajas() {
+        String nombre = JOptionPane.showInputDialog("Digite D:");
+    }
+   
+   public static void reportes() {
+        String nombre = JOptionPane.showInputDialog("Digite la opcion del Sub Menu:");
+>>>>>>> Stashed changes
     }
 
 

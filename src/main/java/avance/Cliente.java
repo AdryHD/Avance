@@ -1,14 +1,21 @@
 package avance;
+<<<<<<< Updated upstream
 
 import javax.swing.JOptionPane;
 
+=======
+>>>>>>> Stashed changes
 public class Cliente {
     
     private String nombre;
     private String identificacion;
     private boolean preferencial;
+<<<<<<< Updated upstream
     private boolean tipoCliente;
     private String tipoTramite;
+=======
+  //  private Tramite tipoTramite = new Tramite ();
+>>>>>>> Stashed changes
 
     public String getNombre() {
         return nombre;
@@ -46,6 +53,7 @@ public class Cliente {
         setPreferencial(false);
     }
 
+<<<<<<< Updated upstream
 
      
 
@@ -62,3 +70,7 @@ public void pedirDatos() {
         this.fechaHoraIngreso = new Date();*/
     }
 }
+=======
+   
+}
+>>>>>>> Stashed changes

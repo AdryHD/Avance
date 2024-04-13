@@ -30,7 +30,7 @@ public class Avance {
      
         //ciclo para mostrar menu
         
-        while (opcionMenu != 6) {
+        while (opcionMenu != 7) {
 
             //mostrar menu
             String textoMenu = "*** Menú Principal *** \n Elija la opción deseada: \n"
@@ -47,12 +47,11 @@ public class Avance {
 // evaluar opcion
             switch (opcionMenu) {
                 case 1:{
-                    crearCliente(listaClientes, cliente);
+                    {crearCliente(listaClientes, cliente);
                     menu ();
                     break;}
-           
                 case 2:{
-                    registroTramite ();
+                     registroTramite ();
                     menu (); 
                     break;}
                 case 3:tramiteRecepcion();
@@ -61,11 +60,10 @@ public class Avance {
                 case 4:{pedirDocumentos(listaClientes);
                 menu (); 
                     break;}
-                case 5:{tramitesCajas();
+                case 5:tramitesCajas();
 
                 case 1:
-                    
-                 
+                  
                     break;
            
                 case 2:
@@ -132,6 +130,7 @@ public class Avance {
         else { 
             JOptionPane.showInternalConfirmDialog(null, "Ya no hay espacion disponible en recepción");
         }
+}
 
     // Datos de ingreso de trámites
 //    public static void ingreso() {
@@ -141,13 +140,13 @@ public class Avance {
 //                    "Tipo de Trámite", JOptionPane.INFORMATION_MESSAGE, null, //con ayuda de https://recursosformacion.com/2018/05/java-programadores-9-7-cuadros-dialogo/
 //                    new String[]{"Registro exportador", "Exoneración impuestos", "Activación de Registro de Importador",
 //                            "Permisos especiales productos"}, "Registro exportador");
-    }
+    
+
     public static void recepcion() {
         // Solicitar tipo de cliente
         boolean tipoCliente = JOptionPane.showConfirmDialog(null, "¿Es cliente preferencial?", "Cliente Preferencial",
                     JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION; //con ayuda de https://recursosformacion.com/2018/05/java-programadores-9-7-cuadros-dialogo/
         
-
     }
     
     public static void tramiteRecepcion() {
@@ -385,12 +384,8 @@ public void crearCliente(Cliente cliente){
     //JOptionPane.showConfirmDialog(parentComponent, cliente, title, YES_NO_OPTION)
     }
 
-    
     //ArrayList<String> cars = new ArrayList<String>();
     //cars.add("Volvo");
-
-  
-
 }
 }
 

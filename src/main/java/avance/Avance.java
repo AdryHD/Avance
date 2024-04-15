@@ -8,7 +8,6 @@ public class Avance {
     static Tramite[] documentos = new Tramite[10];
     static Tramite[] caja = new Tramite[10];
     static Tramite[] finalizados = new Tramite[10];
-    //static int cantidadCliente = 3;
 
     public static void main(String[] args) {
         menu();
@@ -101,7 +100,6 @@ public class Avance {
       
   
 public static void ingresoTramite() {
-
 // Validar que hay espacio
     int espacioTramites = -1;
     for (int i = 0; i < recepcion.length; i++) {
@@ -132,12 +130,9 @@ public static void ingresoTramite() {
         JOptionPane.showMessageDialog(null,"Se agregó un nuevo Tramite");
 }else {JOptionPane.showMessageDialog(null,"No hay espacio");}
 }
-    //System.out.println(recepcion[espacioTramites].toString());
-    //System.out.println(espacioTramites);
 
   
 public static void analisisTramiteRecepcion() {
-//boolean r;
 // Validar que hay espacio
     int espacioTramites = -1;
     for (int i = 0; i < documentos.length; i++) {
@@ -153,7 +148,6 @@ public static void analisisTramiteRecepcion() {
 
     if (espacioTramites != -1) {
         //Agregamos el cliente
-        //Tramite temp = new Tramite();
         Object respuesta = JOptionPane.showInputDialog(null,"Selecciona un tipo de tramite", "Elegir",JOptionPane.QUESTION_MESSAGE,null,tipo, "Normal");
            //https://www.youtube.com/watch?v=A-R9SrKQmGY
         for(int j=0;j<recepcion.length;j++){
@@ -193,7 +187,6 @@ public static void analisisTramiteDocumentos() {
 
     if (espacioTramites != -1) {
         //Agregamos el cliente
-        //Tramite temp = new Tramite();
         Object respuesta = JOptionPane.showInputDialog(null,"Selecciona un tipo de tramite", "Elegir",JOptionPane.QUESTION_MESSAGE,null,tipo, "Normal");
            //https://www.youtube.com/watch?v=A-R9SrKQmGY
         for(int j=0;j<documentos.length;j++){
@@ -287,12 +280,10 @@ return temp;
 }
 
 private static void imprimirArreglo(Tramite[] a, String texto){
-//String texto = "";
 for(int i=0;i<a.length;i++){
     if (a[i]!=null){
 texto = "Arreglo " + texto +"\n\n\n"+ a[i].toString()+"\n";} else {texto = texto + "\n\n\n"+ "Posicion " + i + " del arreglo está vacia \n\n";}
 }
-    //System.out.println(texto);
     JOptionPane.showMessageDialog(null, texto);
 }
 

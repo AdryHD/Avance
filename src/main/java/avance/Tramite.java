@@ -1,5 +1,6 @@
 package avance;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 //import java.time.format.DateTimeFormatter;
 
 
@@ -117,6 +118,7 @@ public class Tramite {
 
 @Override
     public String toString() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");  
         StringBuilder sb = new StringBuilder();
         sb.append("Registro de Tramite\n");
         sb.append("**************\n");
@@ -126,10 +128,14 @@ public class Tramite {
         sb.append("Tipo de Tramite: ").append(tipo).append("\n");
         sb.append("Monto a Pagar: ").append(monto).append("\n");
         sb.append("Estado del tramite: ").append(pagado).append("\n");
-        sb.append("Fecha de ingreso: ").append(fechaRecepcion).append("\n");
-        sb.append("Fecha de movido a Documentos: ").append(fechaDocumentos).append("\n");
-        sb.append("Fecha de movido a Cajas: ").append(fechaCaja).append("\n");
-        sb.append("Fecha de Finalizacion: ").append(fechaFin).append("\n");
+        if (fechaRecepcion!=null){
+        sb.append("Fecha de ingreso: ").append(fechaRecepcion.format(format)).append("\n");}
+        if (fechaDocumentos!=null){
+        sb.append("Fecha de movido a Documentos: ").append(fechaDocumentos.format(format)).append("\n");}
+        if (fechaCaja!=null){
+        sb.append("Fecha de movido a Cajas: ").append(fechaCaja.format(format)).append("\n");}
+        if (fechaFin!=null){
+        sb.append("Fecha de Finalizacion: ").append(fechaFin.format(format)).append("\n");}
         
         return sb.toString();
     }    

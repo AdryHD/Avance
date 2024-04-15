@@ -9,25 +9,35 @@ public class Tramite {
     private LocalDateTime fechaDocumentos;
     private LocalDateTime fechaCaja;
     private LocalDateTime fechaFin;
-  
-
+    private String pagado;
     private String tipo;
     private int monto;
     private String nombre;
     private String identificacion;
     private String tipoCliente;
 
-    public Tramite(LocalDateTime fechaRecepcion, LocalDateTime fechaDocumentos, LocalDateTime fechaCaja, LocalDateTime fechaFin, String tipo, int monto, String nombre, String identificacion, String tipoCliente) {
+    public Tramite(LocalDateTime fechaRecepcion, LocalDateTime fechaDocumentos, LocalDateTime fechaCaja, LocalDateTime fechaFin, String pagado, String tipo, int monto, String nombre, String identificacion, String tipoCliente) {
         this.fechaRecepcion = fechaRecepcion;
         this.fechaDocumentos = fechaDocumentos;
         this.fechaCaja = fechaCaja;
         this.fechaFin = fechaFin;
+        this.pagado = pagado;
         this.tipo = tipo;
         this.monto = monto;
         this.nombre = nombre;
         this.identificacion = identificacion;
         this.tipoCliente = tipoCliente;
     }
+
+    public String getPagado() {
+        return pagado;
+    }
+
+    public void setPagado(String pagado) {
+        this.pagado = pagado;
+    }
+
+
 
     public String getTipoCliente() {
         return tipoCliente;
@@ -115,6 +125,7 @@ public class Tramite {
         sb.append("Tipo de Cliente: ").append(tipoCliente).append("\n");
         sb.append("Tipo de Tramite: ").append(tipo).append("\n");
         sb.append("Monto a Pagar: ").append(monto).append("\n");
+        sb.append("Estado del tramite: ").append(pagado).append("\n");
         sb.append("Fecha de ingreso: ").append(fechaRecepcion).append("\n");
         sb.append("Fecha de movido a Documentos: ").append(fechaDocumentos).append("\n");
         sb.append("Fecha de movido a Cajas: ").append(fechaCaja).append("\n");

@@ -18,6 +18,7 @@ public class Avance {
     static Tramite[] recepcion = new Tramite[10];
     static Tramite[] documentos = new Tramite[10];
     static Tramite[] caja = new Tramite[10];
+    static Tramite[] finalizados = new Tramite[10];
     //static int cantidadCliente = 3;
 
     public static void main(String[] args) {
@@ -60,6 +61,7 @@ public class Avance {
                     menu (); 
                     break;}
                 case 4:{
+                analisisTramiteCajas();
                 menu (); 
                     break;}
                 case 5: {
@@ -145,6 +147,7 @@ public static void analisisTramiteRecepcion() {
         if (documentos[i] == null) {
             espacioTramites = i;
             i=documentos.length;
+            System.out.println("Espacio tramites" + espacioTramites);
         }
     }
     String tipo[] = new String[2];
@@ -161,7 +164,7 @@ public static void analisisTramiteRecepcion() {
         for(int j=0;j<recepcion.length;j++){
             if (recepcion[j].getTipoCliente().equals(respuesta.toString())){ 
                 
-                    
+                    System.out.println("Espacio tramites" + espacioTramites);
                         //if (JOptionPane.showConfirmDialog(null, "¿Desea aprobar el Tramite "+recepcion[i].getTipo()+"?", "Aprobar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){}
                         documentos[espacioTramites]=recepcion[j];
                         documentos[espacioTramites].setFechaDocumentos(LocalDateTime.now());
@@ -179,6 +182,7 @@ public static void analisisTramiteRecepcion() {
         }
         JOptionPane.showMessageDialog(null,"Se agregó  un tramite a Documentos");
     }else {JOptionPane.showMessageDialog(null,"No hay espacio");}
+    System.out.println("Movido a documentos");
     System.out.println(documentos[espacioTramites].toString());
     System.out.println(espacioTramites);
 }
@@ -204,7 +208,7 @@ public static void analisisTramiteDocumentos() {
            //https://www.youtube.com/watch?v=A-R9SrKQmGY
         for(int j=0;j<documentos.length;j++){
              if (documentos[j].getTipoCliente().equals(respuesta.toString())){ 
-                        if (JOptionPane.showConfirmDialog(null, "¿Desea aprobar el Tramite? "+documentos[espacioTramites].toString(), "Aprobar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                        if (JOptionPane.showConfirmDialog(null, "¿Desea aprobar el Tramite? \n"+documentos[espacioTramites].toString(), "Aprobar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
                         
                         caja[espacioTramites]=documentos[j];
                         caja[espacioTramites].setFechaCaja(LocalDateTime.now());
@@ -215,7 +219,7 @@ public static void analisisTramiteDocumentos() {
                                 case "Exoneración impuestos":{
                                 caja[espacioTramites].setMonto(10);
                                 break;}
-                                case "Activación de registro":{
+                                case "Activación de Registro de Importador":{
                                 caja[espacioTramites].setMonto(50);
                                 break;}
                                 case "Permisos especiales productos":{
@@ -229,16 +233,69 @@ public static void analisisTramiteDocumentos() {
                         }
                         //i=documentos.length;
                         j=documentos.length;
-
+                        JOptionPane.showMessageDialog(null,"Se agregó  un tramite a Cajas");
+                        }else{
+                            Tramite temp =documentos[j];
+                            documentos[j]=null;
+                            for (int k=1;k<documentos.length; k++){
+                            if((documentos[j+k]!=null)&&((j+k)<documentos.length))documentos[j+(k-1)]=documentos[j+k];
+                            documentos[j+k]=null;}
+                        for(int a=0;a<documentos.length;a++){if(documentos==null){
+                            documentos[a]=temp;}}
                         }
              
         }
-        JOptionPane.showMessageDialog(null,"Se agregó  un tramite a Cajas");}
+        }
+    System.out.println("Movido a Cajas");
     System.out.println(caja[espacioTramites].toString());
     System.out.println(espacioTramites);
     }else {JOptionPane.showMessageDialog(null,"No hay espacio");}
 }
   
+public static void analisisTramiteCajas() {
+
+// Validar que hay espacio
+    int espacioTramites = -1;
+    for (int i = 0; i < finalizados.length; i++) {
+        if (finalizados[i] == null) {
+            espacioTramites = i;
+             i=finalizados.length;
+        }
+    }
+    String tipo[] = new String[2];
+    tipo[0] = "Normal";
+    tipo[1] = "Preferencial";
+
+    if (espacioTramites != -1) {
+        //Agregamos el cliente
+        //Tramite temp = new Tramite();
+        Object respuesta = JOptionPane.showInputDialog(null,"Selecciona un tipo de tramite", "Elegir",JOptionPane.QUESTION_MESSAGE,null,tipo, "Normal");
+           //https://www.youtube.com/watch?v=A-R9SrKQmGY
+        for(int j=0;j<caja.length;j++){
+             if (caja[j].getTipoCliente().equals(respuesta.toString())){ 
+                 finalizados[espacioTramites]=caja[j];
+                 finalizados[espacioTramites].setFechaFin(LocalDateTime.now());
+                 if (JOptionPane.showConfirmDialog(null, "¿Desea Pagar el Tramite? "+caja[espacioTramites].toString(), "Pagar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                        finalizados[espacioTramites].setPagado("Pagado");}else{finalizados[espacioTramites].setPagado("retirado");}
+                        caja[j]=null;
+                        for (int k=1;k<caja.length; k++){
+                            if((caja[j+k]!=null)&&((j+k)<caja.length))caja[j+(k-1)]=caja[j+k];
+                            caja[j+k]=null;
+                        }
+                        //i=documentos.length;
+                        j=caja.length;
+                        JOptionPane.showMessageDialog(null,"Se finalizó  un tramite");
+                        }
+             
+        }
+        
+    System.out.println("Movido a finalizados");
+    System.out.println(finalizados[espacioTramites].toString());
+    System.out.println(espacioTramites);
+    }else {JOptionPane.showMessageDialog(null,"No hay espacio");}
+}
+
+
 }
 
       

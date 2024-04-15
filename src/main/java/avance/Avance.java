@@ -88,8 +88,16 @@ public class Avance {
 
 
                 case 6:
-                    System.exit(0); 
-                    return;
+                    {System.exit(0); 
+                    break;}
+                case 7: {imprimirArreglo(recepcion);
+                    break;}
+                case 8: {imprimirArreglo(documentos);
+                    break;}
+                case 9: {imprimirArreglo(caja);
+                    break;}
+                case 10: {imprimirArreglo(finalizados);
+                    break;}
                 default:
                     JOptionPane.showMessageDialog(null, "Opción inválidad");
                     break;
@@ -169,10 +177,12 @@ public static void analisisTramiteRecepcion() {
                         documentos[espacioTramites]=recepcion[j];
                         documentos[espacioTramites].setFechaDocumentos(LocalDateTime.now());
                         recepcion[j]=null;
-                        for (int k=1;k<recepcion.length; k++){
-                            if((recepcion[j+k]!=null)&&((j+k)<recepcion.length))recepcion[j+(k-1)]=recepcion[j+k];
-                            recepcion[j+k]=null;
-                        }
+                        recepcion = limpiarArreglo(recepcion);
+                        /*for (int k=1;k<recepcion.length; k++){
+                            if((recepcion[j+k]!=null)&&((j+k)<recepcion.length)){
+                                recepcion[j+(k-1)]=recepcion[j+k];
+                            recepcion[j+k]=null;}
+                        }*/
                         //i=recepcion.length;
                         j=recepcion.length;
 
@@ -227,10 +237,12 @@ public static void analisisTramiteDocumentos() {
                                 break;}}
                       
                         documentos[j]=null;
-                        for (int k=1;k<documentos.length; k++){
-                            if((documentos[j+k]!=null)&&((j+k)<documentos.length))documentos[j+(k-1)]=documentos[j+k];
-                            documentos[j+k]=null;
-                        }
+                        documentos = limpiarArreglo(documentos);
+                       /* for (int k=1;k<documentos.length; k++){
+                            if((documentos[j+k]!=null)&&((j+k)<documentos.length)){
+                                documentos[j+(k-1)]=documentos[j+k];
+                                documentos[j+k]=null;}
+                        }*/
                         //i=documentos.length;
                         j=documentos.length;
                         JOptionPane.showMessageDialog(null,"Se agregó  un tramite a Cajas");
@@ -278,10 +290,11 @@ public static void analisisTramiteCajas() {
                  if (JOptionPane.showConfirmDialog(null, "¿Desea Pagar el Tramite? "+caja[espacioTramites].toString(), "Pagar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
                         finalizados[espacioTramites].setPagado("Pagado");}else{finalizados[espacioTramites].setPagado("retirado");}
                         caja[j]=null;
-                        for (int k=1;k<caja.length; k++){
+                        caja = limpiarArreglo(caja);
+                        /*for (int k=1;k<caja.length; k++){
                             if((caja[j+k]!=null)&&((j+k)<caja.length))caja[j+(k-1)]=caja[j+k];
                             caja[j+k]=null;
-                        }
+                        }*/
                         //i=documentos.length;
                         j=caja.length;
                         JOptionPane.showMessageDialog(null,"Se finalizó  un tramite");
@@ -295,6 +308,27 @@ public static void analisisTramiteCajas() {
     }else {JOptionPane.showMessageDialog(null,"No hay espacio");}
 }
 
+private static Tramite[] limpiarArreglo(Tramite[] a){
+Tramite[] temp = new Tramite[10];
+int j=0;
+for(int i=0;i<a.length;i++){
+    if (a[i]!=null)
+    {temp[j]=a[i];
+    j++;}
+
+}
+return temp;    
+}
+
+private static void imprimirArreglo(Tramite[] a){
+String texto = "";
+for(int i=0;i<a.length;i++){
+    if (a[i]!=null){
+texto = texto + a[i].toString()+"\n";} else {texto = texto + "Posicion " + i + " del arreglo está vacia \n\n";}
+}
+    //System.out.println(texto);
+    JOptionPane.showMessageDialog(null, texto);
+}
 
 }
 

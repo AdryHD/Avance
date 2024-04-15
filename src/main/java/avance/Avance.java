@@ -35,36 +35,34 @@ public class Avance {
 
             //mostrar menu
             String textoMenu = "*** Menú Principal *** \n Elija la opción deseada: \n"
-                    + "1. Ingreso del Cliente  \n"
-                    + "2. Ingreso de trámite \n"
-                    + "3. Análisis de trámites en “Recepción” \n"
-                    + "4. Análisis de trámites en “Documentos” \n"
-                    + "5. Análisis de trámites en “Cajas”  \n"
-                    + "6. Reportes  \n"
-                    + "7. Salir";
+                    + "1. Ingreso de trámite \n"
+                    + "2. Análisis de trámites en “Recepción” \n"
+                    + "3. Análisis de trámites en “Documentos” \n"
+                    + "4. Análisis de trámites en “Cajas”  \n"
+                    + "5. Reportes  \n"
+                    + "6. Salir";
 
                 opcionMenu = Integer.parseInt(JOptionPane.showInputDialog(textoMenu));
 
 // evaluar opcion
             switch (opcionMenu) {
+                  
                 case 1:{
-                    
-                    menu ();
+                    ingresoTramite();
+                    menu (); 
                     break;}
                 case 2:{
-                     
+                    analisisTramiteRecepcion();
                     menu (); 
                     break;}
                 case 3:{
-                menu (); 
+                    analisisTramiteDocumentos();
+                    menu (); 
                     break;}
                 case 4:{
                 menu (); 
                     break;}
-                case 5:{
-                menu (); 
-                    break;}
-                case 6: {
+                case 5: {
                     int opcionReporte = 0;
                     while (opcionReporte !=5) {
                         String textoMenuReportes = "1. Reporte de Trámites Desertados \n"
@@ -87,7 +85,7 @@ public class Avance {
                     break;}
 
 
-                case 7:
+                case 6:
                     System.exit(0); 
                     return;
                 default:
@@ -110,6 +108,7 @@ public static void ingresoTramite() {
     for (int i = 0; i < recepcion.length; i++) {
         if (recepcion[i] == null) {
             espacioTramites = i;
+            i=recepcion.length;
         }
     }
     
@@ -120,12 +119,10 @@ public static void ingresoTramite() {
         temp.setIdentificacion(JOptionPane.showInputDialog(null, "Digite la identificacion del Cliente: "));
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Es cliente preferencial?", "Cliente Preferencial", JOptionPane.YES_NO_OPTION);
         if(respuesta == JOptionPane.YES_OPTION){
-        temp.setPreferencial(true);
-            }else {temp.setPreferencial(false);}  
-        
-        temp.setFecha(LocalDateTime.now());
+        temp.setTipoCliente("Preferencial");}else{temp.setTipoCliente("Normal");}
+        temp.setFechaRecepcion(LocalDateTime.now());
         temp.setMonto(0);
-        String tipo[] = new String[2];
+        String tipo[] = new String[4];
         tipo[0] = "Registro exportador";
         tipo[1] = "Exoneración impuestos";
         tipo[2] = "Activación de Registro de Importador";
@@ -136,14 +133,64 @@ public static void ingresoTramite() {
         JOptionPane.showMessageDialog(null,"Se agregó un nuevo Tramite");
 }else {JOptionPane.showMessageDialog(null,"No hay espacio");}
 }
+    //System.out.println(recepcion[espacioTramites].toString());
+    //System.out.println(espacioTramites);
+
   
 public static void analisisTramiteRecepcion() {
-
+//boolean r;
 // Validar que hay espacio
     int espacioTramites = -1;
     for (int i = 0; i < documentos.length; i++) {
         if (documentos[i] == null) {
             espacioTramites = i;
+            i=documentos.length;
+        }
+    }
+    String tipo[] = new String[2];
+    tipo[0] = "Normal";
+    tipo[1] = "Preferencial";
+
+    if (espacioTramites != -1) {
+        //Agregamos el cliente
+        //Tramite temp = new Tramite();
+        Object respuesta = JOptionPane.showInputDialog(null,"Selecciona un tipo de tramite", "Elegir",JOptionPane.QUESTION_MESSAGE,null,tipo, "Normal");
+        //System.out.println(respuesta);
+           //https://www.youtube.com/watch?v=A-R9SrKQmGY
+        //if (respuesta.toString().equals("Preferencial")){r=true;}else{r=false;}
+        for(int j=0;j<recepcion.length;j++){
+            if (recepcion[j].getTipoCliente().equals(respuesta.toString())){ 
+                
+                    
+                        //if (JOptionPane.showConfirmDialog(null, "¿Desea aprobar el Tramite "+recepcion[i].getTipo()+"?", "Aprobar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){}
+                        documentos[espacioTramites]=recepcion[j];
+                        documentos[espacioTramites].setFechaDocumentos(LocalDateTime.now());
+                        recepcion[j]=null;
+                        for (int k=1;k<recepcion.length; k++){
+                            if((recepcion[j+k]!=null)&&((j+k)<recepcion.length))recepcion[j+(k-1)]=recepcion[j+k];
+                            recepcion[j+k]=null;
+                        }
+                        //i=recepcion.length;
+                        j=recepcion.length;
+
+                        }
+                
+            
+        }
+        JOptionPane.showMessageDialog(null,"Se agregó  un tramite a Documentos");
+    }else {JOptionPane.showMessageDialog(null,"No hay espacio");}
+    System.out.println(documentos[espacioTramites].toString());
+    System.out.println(espacioTramites);
+}
+  
+public static void analisisTramiteDocumentos() {
+
+// Validar que hay espacio
+    int espacioTramites = -1;
+    for (int i = 0; i < caja.length; i++) {
+        if (caja[i] == null) {
+            espacioTramites = i;
+             i=caja.length;
         }
     }
     String tipo[] = new String[2];
@@ -155,26 +202,40 @@ public static void analisisTramiteRecepcion() {
         //Tramite temp = new Tramite();
         Object respuesta = JOptionPane.showInputDialog(null,"Selecciona un tipo de tramite", "Elegir",JOptionPane.QUESTION_MESSAGE,null,tipo, "Normal");
            //https://www.youtube.com/watch?v=A-R9SrKQmGY
-        for(int i=0;i<recepcion.length;i++){
-            if (recepcion[i].getTipo()==respuesta){ 
-                for(int j=0;j<documentos.length;j++){
-                    if (documentos[j]==null){
-                        //if (JOptionPane.showConfirmDialog(null, "¿Desea aprobar el Tramite "+recepcion[i].getTipo()+"?", "Aprobar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){}
-                        documentos[j]=recepcion[i];
-                        documentos[j].setFecha(LocalDateTime.now());
-                        recepcion[i]=null;
-                        for (int k=1;k<recepcion.length; k++){
-                            if((recepcion[i+k]!=null)&&((i+k)<recepcion.length))recepcion[i+(k-1)]=recepcion[i+k];
-                            recepcion[i+k]=null;
+        for(int j=0;j<documentos.length;j++){
+             if (documentos[j].getTipoCliente().equals(respuesta.toString())){ 
+                        if (JOptionPane.showConfirmDialog(null, "¿Desea aprobar el Tramite? "+documentos[espacioTramites].toString(), "Aprobar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                        
+                        caja[espacioTramites]=documentos[j];
+                        caja[espacioTramites].setFechaCaja(LocalDateTime.now());
+                        switch (caja[espacioTramites].getTipo()) {
+                                case "Registro exportador":{
+                                caja[espacioTramites].setMonto(100);
+                                break;}
+                                case "Exoneración impuestos":{
+                                caja[espacioTramites].setMonto(10);
+                                break;}
+                                case "Activación de registro":{
+                                caja[espacioTramites].setMonto(50);
+                                break;}
+                                case "Permisos especiales productos":{
+                                caja[espacioTramites].setMonto(25);
+                                break;}}
+                      
+                        documentos[j]=null;
+                        for (int k=1;k<documentos.length; k++){
+                            if((documentos[j+k]!=null)&&((j+k)<documentos.length))documentos[j+(k-1)]=documentos[j+k];
+                            documentos[j+k]=null;
                         }
-                        i=recepcion.length;
-                        j=recepcion.length;
+                        //i=documentos.length;
+                        j=documentos.length;
 
                         }
-                }
-            }
+             
         }
-        JOptionPane.showMessageDialog(null,"Se agregó  un tramite a Documentos");
+        JOptionPane.showMessageDialog(null,"Se agregó  un tramite a Cajas");}
+    System.out.println(caja[espacioTramites].toString());
+    System.out.println(espacioTramites);
     }else {JOptionPane.showMessageDialog(null,"No hay espacio");}
 }
   

@@ -15,8 +15,6 @@ public class Avance {
     }
 
     public static void menu() {
-        //Tramite tramite = new Tramite();
-        //Cliente cliente = new Cliente();
         int opcionMenu = 0;
         //ciclo para mostrar menu
 
@@ -184,9 +182,6 @@ public class Avance {
         } else {
             JOptionPane.showMessageDialog(null, "No hay espacio");
         }
-        /*System.out.println("Movido a documentos");
-    System.out.println(documentos[espacioTramites].toString());
-    System.out.println(espacioTramites);*/
     }
 
     public static void analisisTramiteDocumentos() {

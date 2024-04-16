@@ -153,7 +153,7 @@ public static void analisisTramiteRecepcion() {
         for(int j=0;j<recepcion.length;j++){
             if (recepcion[j].getTipoCliente().equals(respuesta.toString())){ 
                 
-                    System.out.println("Espacio tramites" + espacioTramites);
+                    //System.out.println("Espacio tramites" + espacioTramites);
                         documentos[espacioTramites]=recepcion[j];
                         documentos[espacioTramites].setFechaDocumentos(LocalDateTime.now());
                         recepcion[j]=null;
@@ -166,9 +166,9 @@ public static void analisisTramiteRecepcion() {
         }
         JOptionPane.showMessageDialog(null,"Se agregó  un tramite a Documentos");
     }else {JOptionPane.showMessageDialog(null,"No hay espacio");}
-    System.out.println("Movido a documentos");
+    /*System.out.println("Movido a documentos");
     System.out.println(documentos[espacioTramites].toString());
-    System.out.println(espacioTramites);
+    System.out.println(espacioTramites);*/
 }
   
 public static void analisisTramiteDocumentos() {
@@ -191,7 +191,7 @@ public static void analisisTramiteDocumentos() {
            //https://www.youtube.com/watch?v=A-R9SrKQmGY
         for(int j=0;j<documentos.length;j++){
              if (documentos[j].getTipoCliente().equals(respuesta.toString())){ 
-                        if (JOptionPane.showConfirmDialog(null, "¿Desea aprobar el Tramite? \n"+documentos[espacioTramites].toString(), "Aprobar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                        if (JOptionPane.showConfirmDialog(null, "¿Desea aprobar el Tramite? \n"+documentos[j].toString(), "Aprobar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
                         
                         caja[espacioTramites]=documentos[j];
                         caja[espacioTramites].setFechaCaja(LocalDateTime.now());
@@ -214,18 +214,22 @@ public static void analisisTramiteDocumentos() {
                         j=documentos.length;
                         JOptionPane.showMessageDialog(null,"Se agregó  un tramite a Cajas");
                         }else{
-                            Tramite temp =documentos[j];
+                            Tramite temp = new Tramite();
+                            temp =documentos[j];
                             documentos[j]=null;
-                            limpiarArreglo(documentos);
-                        for(int a=0;a<documentos.length;a++){if(documentos==null){
-                            documentos[a]=temp;}}
+                            documentos = limpiarArreglo(documentos);
+                            j=documentos.length;
+                            //System.out.println(temp.toString());
+                        for(int a=0;a<documentos.length;a++){if(documentos[a]==null){
+                            documentos[a]=temp;
+                            a=documentos.length;}}
                         }
              
         }
         }
-    System.out.println("Movido a Cajas");
+    /*System.out.println("Movido a Cajas");
     System.out.println(caja[espacioTramites].toString());
-    System.out.println(espacioTramites);
+    System.out.println(espacioTramites);*/
     }else {JOptionPane.showMessageDialog(null,"No hay espacio");}
 
 }
@@ -251,7 +255,7 @@ public static void analisisTramiteCajas() {
              if (caja[j].getTipoCliente().equals(respuesta.toString())){ 
                  finalizados[espacioTramites]=caja[j];
                  finalizados[espacioTramites].setFechaFin(LocalDateTime.now());
-                 if (JOptionPane.showConfirmDialog(null, "¿Desea Pagar el Tramite? "+caja[espacioTramites].toString(), "Pagar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                 if (JOptionPane.showConfirmDialog(null, "¿Desea Pagar el Tramite? "+caja[j].toString(), "Pagar tramite", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
                         finalizados[espacioTramites].setPagado("Pagado");}else{finalizados[espacioTramites].setPagado("retirado");}
                         caja[j]=null;
                         caja = limpiarArreglo(caja);

@@ -57,20 +57,28 @@ public class Avance {
                 case 5: {
                     int opcionReporte = 0;
                     while (opcionReporte != 5) {
-                        String textoMenuReportes = "1. Reporte de Trámites Desertados \n"
-                                + "2. Reporte de Trámites por Fila \n"
-                                + "3. Reporte de Trámites Finalizados \n"
-                                + "4. Reporte de Pagos \n"
-                                + "5. Salir \n";
+                        String textoMenuReportes = "1- Reporte Visual de la Agencia \n"
+                                +"2. Reporte de Trámites Desertados \n"
+                                + "3. Reporte de Trámites por Fila \n"
+                                + "4. Reporte de Trámites Finalizados \n"
+                                + "5. Reporte de Pagos \n"
+                                + "6. Salir \n";
                         opcionReporte = Integer.parseInt(JOptionPane.showInputDialog(textoMenuReportes));
                         switch (opcionReporte) {
                             case 1:
+                                generarReporte();
                                 break;
                             case 2:
+                                tramitesDesertados();
                                 break;
                             case 3:
+                                tramitesFilas();
                                 break;
                             case 4:
+                                break;
+                            case 5:
+                                break;
+                            case 6:
                                 break;
                         }
                     }
@@ -330,5 +338,83 @@ public class Avance {
         }
         JOptionPane.showMessageDialog(null, texto);
     }
+ 
+    // Reportes
+    private static void generarReporte(){
+        StringBuilder reporte = new StringBuilder();
+        reporte.append("Recepción: \n");
+        for (Tramite tramite : recepcion){
+            if (tramite != null){
+                reporte.append(tramite.getTipoCliente().charAt(0)).append(" ");
+            }
+            else{
+                reporte.append("- ");
+            }
+        }
+        reporte.append("\n");
+        reporte.append("Documentos: \n");
+        for (Tramite tramite : documentos){
+            if (tramite != null){
+                reporte.append(tramite.getTipoCliente().charAt(0)).append(" ");
+        } else {
+            reporte.append("- ");
+        }
+            }
+        reporte.append("\n");
+        reporte.append("Cajas: \n");
+        for (Tramite tramite : caja){
+            if (tramite != null){
+                reporte.append(tramite.getTipoCliente().charAt(0)).append(" ");
+            }
+            else{
+                reporte.append("- ");
+            }
+        }
+        JOptionPane.showMessageDialog(null, reporte.toString());
+    }
+    
+    private static void tramitesDesertados(){
 
 }
+    private static void tramitesFilas(){
+        StringBuilder reporte = new StringBuilder();
+        int fila = Integer.parseInt(JOptionPane.showInputDialog("1- Recepción \n"
+                +"2- Documentos \n"
+                +"3- Cajas \n"
+                +"4- Salir"));
+        switch (fila){
+            case 1:
+                reporte.append("Recepción:\n");
+                for (Tramite tramite : recepcion){
+                    if (tramite != null){
+                        reporte.append(tramite).append("\n");
+                    }
+                }
+                JOptionPane.showMessageDialog(null, reporte.toString());
+                break;
+            case 2:
+                reporte.append("Documentos:\n");
+                for (Tramite tramite : documentos){
+                    if (tramite != null){
+                        reporte.append(tramite).append("\n");
+                    }
+                }
+                JOptionPane.showMessageDialog(null, reporte.toString());
+                break;
+            case 3:
+                reporte.append("Cajas:\n");
+                for (Tramite tramite : caja){
+                    if (tramite != null){
+                        reporte.append(tramite).append("\n");
+                    }
+                }
+                JOptionPane.showMessageDialog(null, reporte.toString());
+                break;
+            case 4:
+                break;
+        }
+    }
+}
+
+
+

@@ -292,7 +292,7 @@ public class Avance {
                         caja[j] = null;
                         caja = limpiarArreglo(caja);
                         j = caja.length;
-                        //JOptionPane.showMessageDialog(null,"Se finalizó  un tramite");
+                        encontrado = true;
                     }
 
                 }

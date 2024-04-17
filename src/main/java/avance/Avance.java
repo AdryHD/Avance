@@ -56,7 +56,7 @@ public class Avance {
                 }
                 case 5: {
                     int opcionReporte = 0;
-                    while (opcionReporte != 5) {
+                    while (opcionReporte != 6) {
                         String textoMenuReportes = "1- Reporte Visual de la Agencia \n"
                                 +"2. Reporte de Trámites Desertados \n"
                                 + "3. Reporte de Trámites por Fila \n"
@@ -75,6 +75,7 @@ public class Avance {
                                 tramitesFilas();
                                 break;
                             case 4:
+                                tramitesFinalizados();
                                 break;
                             case 5:
                                 break;
@@ -295,7 +296,7 @@ public class Avance {
                         if (JOptionPane.showConfirmDialog(null, "¿Desea Pagar el Tramite? " + caja[j].toString(), "Pagar tramite", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                             finalizados[espacioTramites].setPagado("Pagado");
                         } else {
-                            finalizados[espacioTramites].setPagado("retirado");
+                            finalizados[espacioTramites].setPagado("Retirado");
                         }
                         caja[j] = null;
                         caja = limpiarArreglo(caja);
@@ -374,6 +375,25 @@ public class Avance {
     }
     
     private static void tramitesDesertados(){
+        StringBuilder reporte = new StringBuilder();
+        reporte.append("Lista de Trámites Desertados: \n");
+        boolean desertado = false;
+        for (Tramite tramite : finalizados){
+            if(tramite != null && tramite.getPagado() != null && tramite.getPagado().equals("Retirado")){
+                reporte.append("Nombre: ").append(tramite.getNombre()).append("\n");
+                reporte.append("Identificación: ").append(tramite.getIdentificacion()).append("\n");
+                reporte.append("Tipo de Cliente: ").append(tramite.getTipoCliente()).append("\n");
+                reporte.append("Tipo de Trámite: ").append(tramite.getTipo()).append("\n");
+                reporte.append("Fecha de Asignación: ").append(tramite.getFechaRecepcion()).append("\n");
+                reporte.append("Fecha de Finalización: ").append(tramite.getFechaFin()).append("\n");
+                reporte.append("Estado: ").append(tramite.getPagado()).append("\n\n");
+                desertado = true;
+            }
+        }
+        if (!desertado){
+            reporte.append("Sin Trámites Desertados");
+        }
+        JOptionPane.showMessageDialog(null, reporte.toString());
 
 }
     private static void tramitesFilas(){
@@ -413,6 +433,28 @@ public class Avance {
             case 4:
                 break;
         }
+    }
+    
+    private static void tramitesFinalizados(){
+        StringBuilder reporte = new StringBuilder();
+        reporte.append("Trámites Finalizados: \n");
+        boolean tramites = false;
+        for (Tramite tramite : finalizados){
+             if(tramite != null && "Pagado".equals(tramite.getPagado())){
+                reporte.append("Nombre: ").append(tramite.getNombre()).append("\n");
+                reporte.append("Identificación: ").append(tramite.getIdentificacion()).append("\n");
+                reporte.append("Tipo de Cliente: ").append(tramite.getTipoCliente()).append("\n");
+                reporte.append("Tipo de Trámite: ").append(tramite.getTipo()).append("\n");
+                reporte.append("Fecha de Asignación: ").append(tramite.getFechaRecepcion()).append("\n");
+                reporte.append("Fecha de Finalización: ").append(tramite.getFechaFin()).append("\n");
+                reporte.append("Estado: ").append(tramite.getPagado()).append("\n\n");
+                tramites = true;
+             }
+        }
+        if (!tramites){
+            reporte.append("No hay Trámites Finalizados");
+        }
+        JOptionPane.showMessageDialog(null, reporte.toString());
     }
 }
 

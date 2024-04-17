@@ -280,7 +280,7 @@ public class Avance {
             Object respuesta = JOptionPane.showInputDialog(null, "Selecciona un tipo de tramite", "Elegir", JOptionPane.QUESTION_MESSAGE, null, tipo, "Normal");
             //https://www.youtube.com/watch?v=A-R9SrKQmGY
             for (int j = 0; j < caja.length; j++) {
-                if (documentos[j] != null) {
+                if (caja[j] != null) {
                     if (caja[j].getTipoCliente().equals(respuesta.toString())) {
                         finalizados[espacioTramites] = caja[j];
                         finalizados[espacioTramites].setFechaFin(LocalDateTime.now());

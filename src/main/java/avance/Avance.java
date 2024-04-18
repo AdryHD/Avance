@@ -16,8 +16,8 @@ public class Avance {
 
     public static void menu() {
         int opcionMenu = 0;
-        //ciclo para mostrar menu
-
+        
+    //ciclo para mostrar menu
         while (opcionMenu != 7) {
 
             //mostrar menu
@@ -57,8 +57,8 @@ public class Avance {
                 case 5: {
                     int opcionReporte = 0;
                     while (opcionReporte != 6) {
-                        String textoMenuReportes = "1- Reporte Visual de la Agencia \n"
-                                +"2. Reporte de Trámites Desertados \n"
+                        String textoMenuReportes = "1. Reporte Visual de la Agencia \n"
+                                + "2. Reporte de Trámites Desertados \n"
                                 + "3. Reporte de Trámites por Fila \n"
                                 + "4. Reporte de Trámites Finalizados \n"
                                 + "5. Reporte de Pagos \n"
@@ -341,7 +341,7 @@ public class Avance {
         JOptionPane.showMessageDialog(null, texto);
     }
  
-    // Reportes
+    // PEPORTES
     private static void generarReporte(){
         StringBuilder reporte = new StringBuilder();
         reporte.append("Recepción: \n");

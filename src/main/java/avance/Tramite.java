@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
+    // ATRIBUTOS
 
 public class Tramite {
 
@@ -16,6 +17,8 @@ public class Tramite {
     private String nombre;
     private String identificacion;
     private String tipoCliente;
+    
+    //CONSTRUCTOR SOBRECARGADO
 
     public Tramite(LocalDateTime fechaRecepcion, LocalDateTime fechaDocumentos, LocalDateTime fechaCaja, LocalDateTime fechaFin, String pagado, String tipo, int monto, String nombre, String identificacion, String tipoCliente) {
         this.fechaRecepcion = fechaRecepcion;
@@ -29,7 +32,8 @@ public class Tramite {
         this.identificacion = identificacion;
         this.tipoCliente = tipoCliente;
     }
-
+     // SET Y GET
+    
     public String getPagado() {
         return pagado;
     }
@@ -37,8 +41,6 @@ public class Tramite {
     public void setPagado(String pagado) {
         this.pagado = pagado;
     }
-
-
 
     public String getTipoCliente() {
         return tipoCliente;

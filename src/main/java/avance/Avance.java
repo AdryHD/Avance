@@ -78,6 +78,7 @@ public class Avance {
                                 tramitesFinalizados();
                                 break;
                             case 5:
+                                reportePagos();
                                 break;
                             case 6:
                                 break;
@@ -455,6 +456,39 @@ public class Avance {
             reporte.append("No hay Trámites Finalizados");
         }
         JOptionPane.showMessageDialog(null, reporte.toString());
+    }
+    
+    private static void reportePagos(){
+        StringBuilder pagos = new StringBuilder();
+        pagos.append("Pagos Realizados: \n");
+        for (Tramite tramite : finalizados){
+            if (tramite != null && "Pagado".equals(tramite.getPagado())){
+                pagos.append("Nombre: ").append(tramite.getNombre()).append("\n");
+                pagos.append("Identificación: ").append(tramite.getIdentificacion()).append("\n");
+                pagos.append("Tipo de Trámite: ").append(tramite.getTipo()).append("\n");
+                pagos.append("Monto: ").append(tramite.getMonto()).append(" colones \n");
+            }
+        }
+        JOptionPane.showMessageDialog(null, pagos.toString());
+        int cantidad = 0;
+        int monto = 0;
+        for (Tramite tramite : finalizados){
+            if (tramite != null && "Pagado".equals(tramite.getPagado())){
+                cantidad++;
+                monto += tramite.getMonto();
+            }
+        }
+        StringBuilder datos = new StringBuilder();
+        datos.append("Cantidad de Trámites Pagados: ").append(cantidad).append("\n");
+        datos.append("Monto Total de Trámites Pagados: ").append(monto).append("colones \n");
+        if (cantidad > 0){
+            double promedio = (double) monto / cantidad;
+            datos.append("Promedio Total de Monto por Trámite: ").append(promedio).append("\n");
+        }
+        else{
+            datos.append("No hay Trámites \n");
+        }
+        JOptionPane.showMessageDialog(null, datos.toString());
     }
 }
 

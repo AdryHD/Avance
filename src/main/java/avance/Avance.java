@@ -78,7 +78,6 @@ public class Avance {
                                 tramitesFinalizados();
                                 break;
                             case 5:
-                                reportePagos();
                                 break;
                             case 6:
                                 break;
@@ -110,16 +109,15 @@ public class Avance {
                 default:
                     JOptionPane.showMessageDialog(null, "Opción inválidad");
                     break;
-
             }
         }
-
     }
 
     public static void ingresoTramite() {
 // Validar que hay espacio
         int espacioTramites = -1;
         for (int i = 0; i < recepcion.length; i++) {
+            //EL SIGUIENTE ESPACIO VACIO
             if (recepcion[i] == null) {
                 espacioTramites = i;
                 i = recepcion.length;
@@ -139,6 +137,8 @@ public class Avance {
             }
             temp.setFechaRecepcion(LocalDateTime.now());
             temp.setMonto(0);
+            
+            //NUEVO ARREGLO
             String tipo[] = new String[4];
             tipo[0] = "Registro exportador";
             tipo[1] = "Exoneración impuestos";
@@ -161,7 +161,7 @@ public class Avance {
             if (documentos[i] == null) {
                 espacioTramites = i;
                 i = documentos.length;
-                System.out.println("Espacio tramites" + espacioTramites);
+                //System.out.println("Espacio tramites" + espacioTramites);
             }
         }
         String tipo[] = new String[2];
@@ -215,7 +215,7 @@ public class Avance {
             for (int j = 0; j < documentos.length; j++) {
                 if (documentos[j] != null) {
                     if (documentos[j].getTipoCliente().equals(respuesta.toString())) {
-                        if (JOptionPane.showConfirmDialog(null, "¿Desea aprobar el Tramite? \n" + documentos[j].toString(), "Aprobar tramite", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                        if (JOptionPane.showConfirmDialog(null, "¿Desea aprobar los documentos? \n" + documentos[j].toString(), "Aprobar documentos", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
                             caja[espacioTramites] = documentos[j];
                             caja[espacioTramites].setFechaCaja(LocalDateTime.now());
@@ -456,39 +456,6 @@ public class Avance {
             reporte.append("No hay Trámites Finalizados");
         }
         JOptionPane.showMessageDialog(null, reporte.toString());
-    }
-    
-    private static void reportePagos(){
-        StringBuilder pagos = new StringBuilder();
-        pagos.append("Pagos Realizados: \n");
-        for (Tramite tramite : finalizados){
-            if (tramite != null && "Pagado".equals(tramite.getPagado())){
-                pagos.append("Nombre: ").append(tramite.getNombre()).append("\n");
-                pagos.append("Identificación: ").append(tramite.getIdentificacion()).append("\n");
-                pagos.append("Tipo de Trámite: ").append(tramite.getTipo()).append("\n");
-                pagos.append("Monto: ").append(tramite.getMonto()).append(" colones \n");
-            }
-        }
-        JOptionPane.showMessageDialog(null, pagos.toString());
-        int cantidad = 0;
-        int monto = 0;
-        for (Tramite tramite : finalizados){
-            if (tramite != null && "Pagado".equals(tramite.getPagado())){
-                cantidad++;
-                monto += tramite.getMonto();
-            }
-        }
-        StringBuilder datos = new StringBuilder();
-        datos.append("Cantidad de Trámites Pagados: ").append(cantidad).append("\n");
-        datos.append("Monto Total de Trámites Pagados: ").append(monto).append("colones \n");
-        if (cantidad > 0){
-            double promedio = (double) monto / cantidad;
-            datos.append("Promedio Total de Monto por Trámite: ").append(promedio).append("\n");
-        }
-        else{
-            datos.append("No hay Trámites \n");
-        }
-        JOptionPane.showMessageDialog(null, datos.toString());
     }
 }
 

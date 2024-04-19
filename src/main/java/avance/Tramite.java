@@ -98,6 +98,7 @@ public class Tramite {
         this.identificacion = identificacion;
     }
 
+    //CONSTRUCTOR VACIO
     public Tramite() {
     }
 

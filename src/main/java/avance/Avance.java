@@ -343,11 +343,11 @@ public class Avance {
  
     // PEPORTES
     private static void generarReporte(){
-        StringBuilder reporte = new StringBuilder();
-        reporte.append("Recepción: \n");
-        for (Tramite tramite : recepcion){
+        StringBuilder reporte = new StringBuilder(); 
+        reporte.append("Recepción: \n"); 
+        for (Tramite tramite : recepcion){ 
             if (tramite != null){
-                reporte.append(tramite.getTipoCliente().charAt(0)).append(" ");
+                reporte.append(tramite.getTipoCliente().charAt(0)).append(" "); 
             }
             else{
                 reporte.append("- ");
@@ -357,16 +357,16 @@ public class Avance {
         reporte.append("Documentos: \n");
         for (Tramite tramite : documentos){
             if (tramite != null){
-                reporte.append(tramite.getTipoCliente().charAt(0)).append(" ");
+                reporte.append(tramite.getTipoCliente().charAt(0)).append(" "); 
         } else {
-            reporte.append("- ");
+            reporte.append("- "); 
         }
             }
         reporte.append("\n");
         reporte.append("Cajas: \n");
         for (Tramite tramite : caja){
             if (tramite != null){
-                reporte.append(tramite.getTipoCliente().charAt(0)).append(" ");
+                reporte.append(tramite.getTipoCliente().charAt(0)).append(" "); 
             }
             else{
                 reporte.append("- ");
@@ -377,8 +377,8 @@ public class Avance {
     
     private static void tramitesDesertados(){
         StringBuilder reporte = new StringBuilder();
-        reporte.append("Lista de Trámites Desertados: \n");
-        boolean desertado = false;
+        reporte.append("Lista de Trámites Desertados: \n"); 
+        boolean desertado = false; 
         for (Tramite tramite : finalizados){
             if(tramite != null && tramite.getPagado() != null && tramite.getPagado().equals("Retirado")){
                 reporte.append("Nombre: ").append(tramite.getNombre()).append("\n");
@@ -398,11 +398,12 @@ public class Avance {
 
 }
     private static void tramitesFilas(){
-        StringBuilder reporte = new StringBuilder();
+        StringBuilder reporte = new StringBuilder(); 
         int fila = Integer.parseInt(JOptionPane.showInputDialog("1- Recepción \n"
                 +"2- Documentos \n"
                 +"3- Cajas \n"
                 +"4- Salir"));
+        // Menu
         switch (fila){
             case 1:
                 reporte.append("Recepción:\n");
@@ -437,7 +438,7 @@ public class Avance {
     }
     
     private static void tramitesFinalizados(){
-        StringBuilder reporte = new StringBuilder();
+        StringBuilder reporte = new StringBuilder(); 
         reporte.append("Trámites Finalizados: \n");
         boolean tramites = false;
         for (Tramite tramite : finalizados){
@@ -459,10 +460,10 @@ public class Avance {
     }
     
     private static void reportePagos(){
-        StringBuilder pagos = new StringBuilder();
-        pagos.append("Pagos Realizados: \n");
-        for (Tramite tramite : finalizados){
-            if (tramite != null && "Pagado".equals(tramite.getPagado())){
+        StringBuilder pagos = new StringBuilder(); 
+        pagos.append("Pagos Realizados: \n"); 
+        for (Tramite tramite : finalizados){ 
+            if (tramite != null && "Pagado".equals(tramite.getPagado())){ 
                 pagos.append("Nombre: ").append(tramite.getNombre()).append("\n");
                 pagos.append("Identificación: ").append(tramite.getIdentificacion()).append("\n");
                 pagos.append("Tipo de Trámite: ").append(tramite.getTipo()).append("\n");
@@ -470,25 +471,26 @@ public class Avance {
             }
         }
         JOptionPane.showMessageDialog(null, pagos.toString());
-        int cantidad = 0;
-        int monto = 0;
+        int cantidad = 0; 
+        int monto = 0; 
         for (Tramite tramite : finalizados){
-            if (tramite != null && "Pagado".equals(tramite.getPagado())){
+            if (tramite != null && "Pagado".equals(tramite.getPagado())){ 
+                
                 cantidad++;
-                monto += tramite.getMonto();
+                monto += tramite.getMonto(); 
             }
         }
-        StringBuilder datos = new StringBuilder();
-        datos.append("Cantidad de Trámites Pagados: ").append(cantidad).append("\n");
+        StringBuilder datos = new StringBuilder(); // Se crea un nuevo StringBuilder
+        datos.append("Cantidad de Trámites Pagados: ").append(cantidad).append("\n"); 
         datos.append("Monto Total de Trámites Pagados: ").append(monto).append("colones \n");
         if (cantidad > 0){
-            double promedio = (double) monto / cantidad;
-            datos.append("Promedio Total de Monto por Trámite: ").append(promedio).append("\n");
+            double promedio = (double) monto / cantidad; 
+            datos.append("Promedio Total de Monto por Trámite: ").append(promedio).append("\n"); 
         }
         else{
-            datos.append("No hay Trámites \n");
+            datos.append("No hay Trámites \n"); 
         }
-        JOptionPane.showMessageDialog(null, datos.toString());
+        JOptionPane.showMessageDialog(null, datos.toString()); 
     }
 }
 

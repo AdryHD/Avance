@@ -341,7 +341,7 @@ public class Avance {
         JOptionPane.showMessageDialog(null, texto);
     }
  
-    // PEPORTES
+    // REPORTES
     private static void generarReporte(){
         StringBuilder reporte = new StringBuilder();
         reporte.append("Recepción: \n");
